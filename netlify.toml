@@ -1,0 +1,22 @@
+# Netlify 設定
+# ビルド不要の静的サイトです。GitHub の main ブランチに push すると自動で公開が更新されます。
+[build]
+  publish = "."
+  command = ""
+
+# 画像・動画は長めにキャッシュ（ファイル名を変えずに差し替えた場合も数時間で反映）
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/video/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
